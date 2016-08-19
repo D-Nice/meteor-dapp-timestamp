@@ -1,0 +1,29 @@
+<template name="components_timestampListModal">
+	{{#if stampLoaded}}
+	<table>
+		<tr>
+			<td>
+				{{> dapp_identicon identity=getOwner class='dapp-modal'}}
+			</td>
+			<td>
+				<h1>{{formatTime getTime "MMM Do YYYY - h:mm:ss A"}}</h1>
+				<p style="word-break: break-word;">
+				{{#each returnValues}}
+					{{$.toSentence key}}: <strong>{{value}}</strong><br>
+				{{/each}}
+				</p>
+			</td>
+		</tr>
+		{{#if hasHTML}}
+			<button style="position: absolute; top: 10px; right: 15px;" data-action="toggleHTML">Toggle HTML</button>
+		{{/if}}
+	</table>
+	<div class="dapp-modal-storage">
+		{{#if getThisHTML}}
+			{{{getStorage}}}
+		{{else}}
+			{{getStorage}}
+		{{/if}}			
+	</div>
+	{{/if}}
+</template>

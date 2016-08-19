@@ -1,0 +1,27 @@
+<template name="components_tipEther">
+	<ul class="col col-1-2 mobile-full">
+		<div class="center">
+			<h2><span>ETH Tip Address</span></h2>
+			<p>0x1a3cf1b5d8A3f86326E9b7431108E8665865e09d</p>
+		</div>
+	</ul>
+	<ul class="col col-1-2 mobile-full">
+		<div class="center">
+			<h2 ><span>BTC Tip Address</span></h2>
+			<p>12pkpwjjBBm1yTBtpk6R7NaCJkc5qC8D7f</p>
+		</div>
+	</ul>
+	<div class="center">
+		<h2><span>Tip using contract</span></h2>
+
+		{{> components_accounts}}
+
+		<form id="tipForm" action="search" method="post">
+	        <input id="tipAmount" class="submit-input" type="text" placeholder="Enter amount in Ether" />
+	        <input class="submit-btn" type="submit" value="Tip Ether" />
+	    </form>
+	    {{#with getTip}}
+	    	<p style="border: lightgray outset; padding: 12px 4px;">Transaction Receipt: <a href="http://testnet.etherscan.io/tx/{{this}}" target="_blank">{{this}}</a></p>
+	    {{/with}}
+	</div>
+</template>

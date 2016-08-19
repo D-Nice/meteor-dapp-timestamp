@@ -1,0 +1,37 @@
+<template name="layout_header">
+	<header class="dapp-header dapp-shadow-large" style="background-image:url(/images/bghead.png)">
+		<div class="dapp-title">
+			<label><h1 id="dappTitle"><!--<img src="/images/logo-small.png"> Ð.A.<span>T.A.</span>--> TESTNET</h1></label>
+		</div>
+		<nav>
+			<ul>
+				<li>
+					<a href="{{ pathFor 'home' }}" class="{{#if ifRouteIs 'home'}}active{{/if}}">
+						<i class="icon-home"></i>
+						<span>Home</span>
+					</a>
+					<a href="{{ pathFor 'stamp' }}" class="{{#if ifRouteIs 'stamp'}}active{{/if}}">
+						<i class="icon-camcorder"></i>
+						<span>Stamp</span>
+					</a>
+					<a href="{{ pathFor 'find' }}" class="{{#if ifRouteIs 'find'}}active{{/if}}">
+						<i class="icon-eye"></i>
+						<span>Find</span>
+					</a>
+					<a href="{{ pathFor 'list' }}" class="{{#if ifRouteIs 'list'}}active{{/if}}">
+						<i class="icon-list"></i>
+						<span>List</span>
+					</a>
+					<a href="{{ pathFor 'tip' }}" class="{{#if ifRouteIs 'tip'}}active{{/if}}">
+						<i class="icon-credit-card"></i>
+						<span>Tip</span>
+					</a>
+					<a href="{{ pathFor 'tech' }}" class="{{#if ifRouteIs 'tech'}}active{{/if}}">
+						<i class="icon-chemistry"></i>
+						<span>Tech</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+</template>

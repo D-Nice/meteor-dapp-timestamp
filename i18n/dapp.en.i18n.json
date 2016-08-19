@@ -1,0 +1,39 @@
+{
+	"dapp": {
+		"title": "Ð.A.T.A."
+		, "buttons": {
+			"view1": "Home"
+			, "view2": "Tech"
+
+		}
+		, "pages": {
+			"home": {
+				"title": "Home"
+				,"appTitle": "Ðecentrally Accredited Timestamp Authority"
+				, "appTitle1": "Ðecentrally Accredited"
+				, "appTitle2": "Timestamp Authority"
+				, "content": {
+					"benefits": "Benefits"
+					, "uses": "Uses"
+				}
+			}
+			, "list": {
+				"title": "List"
+			}
+			, "find": {
+				"title": "Find"
+			}
+			, "stamp": {
+				"title": "Stamp"
+			}
+			, "tip": {
+				"title": "Tip"
+			}
+			, "tech": {
+				"title": "Tech"
+			}
+
+		}
+		, "copyright": "Copyright ©2016 Ðecentrally Accredited Timestamp Authority. All Rights Reserved."
+	}		
+}

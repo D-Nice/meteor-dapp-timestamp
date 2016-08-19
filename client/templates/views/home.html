@@ -1,0 +1,65 @@
+<template name="views_home">
+<div id="prepare_fade">
+	<div id="fade_one" class="center">
+		
+		{{> components_staggeredTitle}}
+		<img class="home-logo" src="/images/logo.png" style="margin: -20px 0 30px;">
+	</div>
+	<h4 id="fade_two"> <b>Ð.A.T.A.</b> is a Time Stamping Authority service running on Ethereum and providing the ability to create trusted and decentralized timestamps. Trusted timestamps provide a number of possible uses, and the fact that the Time Stamping Authority exists on the decentralized Ethereum network and 'stamps' on top of its blockchain has vast benefits as well.
+		<div id="fade_three" class="row clear">
+			<ul class="col col-1-2 mobile-full">
+				<h2 class="center"><span> Benefits </span></h2>
+				<li><b>Transparent</b> - Actions and timestamping are run through a smart contract and recorded publicly on the Ethereum blockchain.</li>
+				<li><b>Immutable</b> - Once a timestamp is created, it can never be changed or deleted without major disruption to the entire Ethereum network. The stamp itself is backed by cryptographic work.</li>
+				<li><b>Redundant</b> - Runs on the decentralized Ethereum network, supported by thousands of nodes. As long as the Ethereum network exists, this service will continue to run alongside it. </li>
+				<li><b>Low Cost</b> - The basic timestamp service will cost you a fraction of a US cent, you are only paying for the costs of running the code on Ethereum. The premium timestamp with an oracle source and proof costs a few cents. </li>
+				<li><b>Anonymous</b> - Capability to create a timestamp containing hashed or encrypted data to provide present anonimity and future use or insurance.</li>
+				<li><b>Control</b> - Choose whether a basic block timestamp is sufficient, or for more critical timestamps you may request an oracle timestamp backed by an IPFS proof, and even use a custom oracle. </li>
+				<li><b>Storage</b> - Store any text-based datatype, such as plain text, hash, or encrypted data on the blockchain supplemented by a permanent timestamp.</li>
+			</ul>
+			<ul class="col col-1-2 mobile-full">
+				<h2 class="center"><span> Uses </span></h2>
+				<li><b>Proof of Time</b> - Prove a record or data was archived by you at a certain time. </li>
+				<li><b>Proof of Creation</b> - Prove you are the creator of a project or art by timestamping a hash of the completed work.</li>
+				<li><b>Verified Predictions</b> - Predict a future event, and you may go back to your timestamp to prove it was in fact made prior to the event unfolding.</li>
+				<li><b>Secure your knowledge</b> - Hash information you are about to share with third-parties and timestamp it before divulging it, to avoid possible disputes. The same can be done prior to signing an NDA, to safeguard your inital knowledge of the NDA's subject matter.</li>
+				<li><b>Digital Signing</b> - Digitally sign agreements between addresses or contracts on the blockchain.</li>
+				<li><b>Escrow</b> - Can be used to prove completion of payment or delivery of goods when said party timestamps these events using the service.</li>
+				<li><b>Undeniable Proof*</b> - In case of an arbitration, a recorded timestamp from the service should be undeniable if the proper pre-hash data was held onto along with the Ethereum network being uncompromised, as the timestamps are accurate, permanent, and redundant.</li>
+			</ul>
+		</div>
+		<div id="fade_four" class="row clear">
+			<ul class="col col-12">
+				<h2 class="center"><span> Guide and Best Practices </span></h2>
+				<b>Data Formatting</b> 
+				<li> If making a prediction or something you wish to publicly show, use plain text.</li>
+				<li> In the case of something that needs to remain anonymous or secret, publish a hash using a secure hashing algorithm. </li> 
+				<li> You may also stamp encrypted messages, that can be decrypted by an appropriate party using its private key. Just remember, everything you upload is public, and the encrypted message will be visible to everyone, so ensure it is encrypted securely.</li>
+				<br>
+				<b>Choosing Blockchain time or Oracle time</b>
+				<li> The blockchain timestamp is by far the cheapest, as the only costs you are paying are transaction costs, you don't need to send any ether in this case, but it will cost you a fraction of a few ether, for compensation of the gas costs the contract uses. </li>
+				<li> There is an oracle timestamp service, which uses both the block timestamp, along with an oracled timestamp from <span style="font-weight: 500;" title="National Institute of Information and Communications Technology">NICT</span> which is in charge of deciding and maintaining Japan Standard Time, and is considered an extremely reliable timestamp source. You may opt to receive the timestamp without IPFS proof, or with for an additional fee. The fees will be listed, and you simply include the required amount of Ether to get the appropriate service you want. The majority of these fees are going towards gas costs, and a fraction goes to the Oraclize service and this ÐApp. </li>
+				<br>
+				<b>Hashing</b>
+				<li> It is imperative that all the pre-hashed data be stored somewhere securely, and be unchanged and exact, so when you rehash it in the future, in case of proof, that it results in the same hash. </li>
+				<li> Within the hash, you may include an additional statement proving your associated identity to it, such as prepending the original work or simply adding a salt to the hash specifying "I, John Smith, am herby providing a hash of my original work as proof of creation that it was created by me before the specified timestamp ". </li>
+				<li> When you upload the hash to the timestamp, it is recommended that you specify the hashing algorithm used, as it is saved in the format of a string on the blockchain; e.g. SHA-2: MYHASH. 
+				</li>
+				<br>
+				<b>Prefixes</b>
+				<li> Users have the ability to add a prefix to their timestamps which adds a label to easier identify the type of timestamp and provides additional features if applicable. Please check the Tech convention page for the most up-to-date supported prefixes. </li>
+				<li> Prefixing a timestamp's data field with 'HTML:' allows it to be converted into raw HTML on the site. </li>
+				<li> A user has to manually enable the raw HTML via a toggle link at the top right hand of the pop-up modal. This is to provide a safety net for any possible malicious raw HTML or JS injection. </li>
+				<li> Users are to exercise caution when viewing unknown HTML timestamps, as they could contain malicious scripts or actions, hence, if you don't understand what's in the HTML, and it's not from you, do not toggle it on. </li>
+				<br>
+				
+			</ul>
+			<ul class="col col-12">
+			<h2 class="center"><span> Disclaimer </span></h2>
+			<p>It is our opinion that a properly completed timestamp from this service should uphold in a jurisdiction with a fair and righteous legal system, when supplemented by a technical expert to advise the court of the impossibility to change the recorded stamp after the fact, without compromising its whole underlying network.</p>
+ 			<p><b>*</b>The creators of this project and site are not lawyers or legal advisers, and none of the content of this site is to be considered legal advice. Jurisdictions and courts vary greatly across the globe, and it is highly recommended that you consult with an attorney or legal professional in your jurisdiction to see if this service would be upheld or be admissible in wthin your jurisdiction. </p>			
+			</ul>
+		</div>
+	</h4>
+	</div>
+</template>

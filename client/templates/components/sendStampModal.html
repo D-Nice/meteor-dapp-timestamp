@@ -1,0 +1,14 @@
+<template name="components_sendStampModal">
+	<h1 class="center">Request {{modalTitle}}</h1>
+		<div class="center">
+			{{#if checkLock}}
+				<p style="border: lightgray outset; padding: 12px 4px;">Transaction Receipt: <a class="tx-link" href="http://testnet.etherscan.io/tx/{{getTx}}" target="_blank">{{getTx}}</a></p>
+			{{else}}
+		        <textarea id="stampText" style="width: 400px; min-width: 100%; border: lightgrey inset; height: 80px" placeholder="Enter data to timestamp"></textarea>
+		        <input id="stampSubmit" type="button" style="width: 100px; min-width: 20%;" class="submit-btn" value="Stamp" />
+	        {{/if}}
+	    </div>
+	<pre class="pre-modal">Estimated gas: {{estimatedGas}}</pre>
+	<pre class="pre-modal">Ether cost: {{etherCost}}</pre>
+	<pre>USD cost: ${{formatNumber usdCost}}</pre>
+</template>

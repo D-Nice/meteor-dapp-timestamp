@@ -1,0 +1,452 @@
+h1 {
+    color: fadeout(@colorDarkBurgundy, 20%);
+}
+
+h2 {
+    margin: 36px 0 12px 0;
+    color: fadeout(@colorDarkBurgundy, 20%);
+    background: none;
+    span {
+        color: @colorWhite;
+        background: fadeout(@colorDarkBurgundy, 10%);
+        border-radius: 10px;
+        padding: 1px 8px 2px;
+    }
+}
+
+h4 > span {
+    font-weight: 500;
+}
+table td h1 {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
+table td h2 {
+    text-align: center;
+}
+.modal-shift {
+    margin-right: 15px;
+}
+.mist-shift {
+    header {
+        padding-top: 72px;
+    }
+    .dapp-title {
+        margin-top: 60px;
+    }
+    .dapp-flex-content {
+        margin-top: 150px;
+    }
+}
+.dapp-header {
+    .display(flex);
+    .align-items(flex-end);
+    height: @heightHeader;
+    z-index: 50;
+    margin-top: -5px; // necessary to make sure, that its looks good, when blurred
+    padding-top: @defaultPaddingVertical + 5px; 
+    padding-bottom: 0;
+    position: fixed;
+    width: 100%;
+    .background-image(linear-gradient(to bottom,  lighten(@colorBackgroundHeader, 15%) 0, @colorBackgroundHeader 90%));
+    .box-sizing(content-box);
+    .user-select(none);
+
+    h1 {
+    //font-weight: 200;
+    font-size: 2.2em;
+    color: @colorLink;
+    margin-top: 11px;
+    position: absolute;
+    right: 2em;
+
+    .dapp-small {
+        margin: 0 6px -4px;
+        nav li a i {
+            .opacity(0);
+        }
+    }
+
+    img {
+        //max-width: 50px;
+        //margin-top: 10px;
+        //position: fixed;
+        //top: @defaultPaddingVertical/5;
+        //right: 0.7rem;
+        position: absolute;
+        bottom: 0px;
+        left: 120px;
+    }
+}
+
+    &.dapp-small {
+        height: @gridHeight * 1.5;
+        margin: 0 8px -4px;
+        nav li a i {
+            .opacity(0);
+        }
+    }
+
+    &> .dapp-flex-item {
+        .flex(1);
+    }
+
+    // title
+    .dapp-title {
+        position: absolute;
+        top: @defaultMargin/2;
+        right: @defaultMargin;
+        text-align: right;
+    }
+    hgroup.dapp-title {
+        h1, h2 {
+            margin: 0
+        }
+        h2 {
+            padding: 0;
+            background-color: transparent;
+            color: @colorTextSecondary;
+            text-transform: none;
+            font-family: @fontFamily;
+            font-weight: 300;
+        }
+    }
+    h1.dapp-title {
+        top: @defaultMargin*1.2;
+        margin: 0;
+    }
+
+    // nav
+    nav {
+        width: 100%;
+
+        &> ul {
+            .dapp-horizontal-menu;
+            .display(flex);
+            .align-items(flex-end);
+
+            &> li {
+                flex: 0 1 auto;
+                margin-bottom: 0;
+                .display(flex);
+
+                &> a {
+                    display: inline-block;
+                }
+
+                &.active a,
+                &.active button,
+                button.active,
+                a.active {
+                    color: darken(@colorBackgroundHeader, 20%);
+                    border-bottom: 5px solid @colorWhite;
+                }
+            }
+
+
+            a,
+            a:visited,
+            button {
+                padding: @defaultPaddingVertical/2 @defaultPaddingHorizontal;
+                text-align: center;
+                border-bottom: 5px solid transparent;
+                color: @colorLink;
+                .transform-origin(50% 100%);
+
+                text-transform: uppercase;
+                font-weight: 400;
+
+                &:focus {
+                    border-color: @colorWhite;
+                }
+                &:active {
+                    // border-bottom-color: transparent;
+                }
+
+                i {
+                    font-size: 1.5em;
+
+                    // ANIMATION
+                    .transition(opacity @animationSpeed / 2);
+                }
+
+                span {
+                    display: block;
+                }
+
+            }
+        }
+    }
+}
+
+.dapp-flex-content {
+    margin-top: 84px;
+}
+
+.dapp-content {
+    ul {
+        &> h2 {
+            margin: 1.5em 0 1em;
+        }
+    }
+    h4 {
+        font-weight: 300;
+        font-size: 1.2em;
+        color: fadeout(@colorDarkBurgundy, 10%);
+    }
+}
+
+.col {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+@keyframes fadeIn { from { opacity:0; opacity: 1\9; /* IE9 only */ } to { opacity:1; } }
+@-webkit-keyframes fadeIn { 0% { opacity: 0;} 100% { opacity: 1; } }
+@-moz-keyframes fadeIn { 0% { opacity: 0;} 100% { opacity: 1;} }
+@-o-keyframes fadeIn { 0% { opacity: 0;} 100% { opacity: 1;} }
+@-ms-keyframes fadeIn { 0% { opacity: 0;} 100% { opacity: 1;} }
+
+.fade-in {
+    opacity:0;  /* make things invisible upon start */
+    
+    animation:fadeIn ease-in 1;
+    animation-fill-mode:forwards;
+    animation-duration:1s;
+}
+
+.fade-in.one {
+    animation-delay: 1s;
+}
+
+.fade-in.two {
+    animation-delay: 2s;
+}
+
+.fade-in.three {
+    animation-delay: 3s;
+}
+
+.fade-in.four {
+    animation-delay: 4s;
+}
+
+.come-in {
+    transform: translateY(150px);
+    animation: come-in 1.2s ease forwards;
+}
+
+@keyframes come-in {
+    to { transform: translateY(0); }
+}
+
+.already-visible {
+    transform: translateY(0);
+    animation: none;
+    opacity: 1;
+}
+
+.dapp-account-list {
+    //overflow: visible;
+    li h3 {
+        //color: @colorDarkBurgundy;
+        color: @colorListLink;
+        font-weight: 500;
+        font-size: 110%;
+    }
+    li h3 + span {
+        max-width: 300px;
+        opacity: 1;
+        font-size: 79%;
+    }
+    li button {
+        background: linear-gradient(rgba(0, 0, 0, 0), #EAEAEA);
+    }
+}
+
+#prepare_fade {
+    opacity: 0;
+}
+
+.no-select {
+    .user-select(none);
+}
+
+.dapp-modal-container {
+    text-align: left;
+    width: auto;
+    border-style: outset;
+    max-width: 60vw;
+
+    p {
+        margin-top: 0;
+    }
+}
+
+.dapp-modal-storage {
+    overflow-y: auto;
+    font-size: 16px; 
+    line-height:20px; 
+    max-height: 20vh; 
+    //max-width: 60vw; 
+    border-top: outset; 
+    background: #ddd; 
+    text-align: 
+    center; 
+    margin: -18.4px -32px; 
+    padding: 2vmin;
+    word-break: break-word;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+}
+
+.home-logo {
+    width: 100px;
+    height: 100px;
+}
+
+.stamp-create {
+    position: relative;
+    border-radius: 16px; 
+    padding:4px 16px; 
+    margin: 6px 10px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 44.8px;
+    background: @colorDarkBurgundy;
+    text-align: center;
+    line-height: 100%;
+    color: #fafafa;
+    font-size: 1.8em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.stamp-button, .stamp-button:focus {
+    border: lightgrey 4px outset;
+    margin: 0 1em 1em;
+}
+
+.stamp-button:active {
+    border: lightgrey 4px inset;
+}
+
+.submit-btn {
+    border: lightgrey outset;
+    width: 100px; 
+    max-width: 22%; 
+    min-width: 100px;
+}
+
+.submit-btn:active {
+    border-style: inset;
+}
+
+.submit-input {
+    width: 100%;
+    max-width: 440px; 
+    border: lightgrey inset;
+}
+
+.chosen-account {
+    background: linear-gradient(rgba(214,168,0,0.5), #D6A800) !important;
+}
+
+.stamp-title {
+    margin: 3px; 
+        transform:scale(0.9);
+}
+
+.pre-modal {
+    margin-bottom: -16px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid #ddd;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.loading-squares {
+    position: relative; 
+    margin: -20px 0 160px;
+    transform: scale(0.4);
+}
+
+
+
+.tech-nav-menu {
+    ul {
+        width: auto;
+        margin: auto;
+        text-align: justify;
+        list-style-type: circle;
+        list-style-position: inside;
+        border: outset;
+        padding: 0;
+        position: relative; /* Make it stick, even on scroll */
+        border-bottom: none;
+    }
+
+    li {
+        border-bottom: outset;
+    }
+
+    li a {
+        font-weight: 500;
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    /* Change the link color on hover */
+    li a:hover {
+        //border-radius: 8px;
+        //color: white;
+    }
+    li a:focus {
+        border: none;
+        margin: auto;
+    }
+    li a:active {
+        margin-left: -1em;
+    }
+}
+
+.tech-content {
+    border: inset;
+    border-top: none;
+    overflow-y: auto;
+    max-height: 70vh;
+    padding: 12px;
+    display: none;
+    a {
+        font-weight: 500;
+    }
+    h4 {
+        font-weight: 600;
+    }
+}
+
+.tx-link {
+    overflow-wrap: break-word;
+}

@@ -1,0 +1,15 @@
+<template name="layout_main">
+    <!-- The dynamic page header -->
+    {{> yield region="header"}}
+	<div class="dapp-flex-content">
+
+    <!-- content-->
+    <main class="dapp-content">
+        {{> yield}}
+    </main>
+
+    </div>
+	
+    <!-- The dynamic page footer -->
+    {{> dapp_modalPlaceholder}}
+</template>

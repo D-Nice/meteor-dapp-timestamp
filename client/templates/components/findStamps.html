@@ -1,0 +1,17 @@
+<template name="components_findStamps">
+    <form id="searchForm" class="center" action="search" method="post">
+        <input id="searchText" class="submit-input" type="text" placeholder="Enter address, blocktime or storage data here" />
+        <input class="submit-btn" type="submit" value="{{searchTitle}}" />
+    </form>
+    {{#if searchStarted}}
+    <div class="row clear">
+        <ul class="dapp-account-list no-select">
+            <h3 class="center">Found {{timestampFoundLength}} {{matchCase}} out of {{searchIndex}}</h3>
+            <hr>
+            {{#each timestampFound}}
+                {{> components_timestampTabs}}
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+</template>

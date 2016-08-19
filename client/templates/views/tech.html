@@ -1,0 +1,80 @@
+<template name="views_tech">
+	<h1 class="center">The <span>Tech</span></h1>
+	<div class="center">
+		<div class="tech-nav-menu">
+			<ul>
+				<li><h3><a href="/tech">Interaction</a></h3></li>
+				<div id="contract-content" class="tech-content">
+					<h4>Mist and Metamask</h4>
+					<p>The recommended and easiest method of interacting with this ÐApp is either by opening this webpage through <a target="_blank" href="https://github.com/ethereum/mist/releases">Mist</a> or using <a target="_blank" href="https://metamask.io/">Metamask</a>. If using Mist, ensure your local node is fully synced with the Ethereum network, otherwise the page may not display properly. Do note, that both clients are currently considered to be in beta. </p>
+					<h4>Web Browser read-only</h4>
+					<p>If you aren't accessing it through the aforementioned ways, you are still able to view timestamps, courtesy of a public node provided by <a target="_blank" href="https://www.augur.net/">Augur</a>, but you will not be able to directly timestamp on the contract, however, there will be a pop-up on the timestamps, which includes code you can paste into a running Geth terminal, to do a timestamp. You can also directly interface the site with Geth, by allowing your browser to load unsafe scripts from this site (they are considered unsafe, because the site runs on a secure HTTPS connection, while Geth's RPC runs on HTTP).</p>
+					<h4>Meteor</h4>
+					<p>You may also interact with the ÐApp on your localhost by downloading the meteor-dapp repository and running it locally using meteor and your browser of choice. </p>
+					<h4>Ethereum Wallet</h4>
+					<p>In case you prefer to interact with contracts by way of the Ethereum wallet, watch the logic contract and paste the following contract ABI in: </p>
+					<p>Logic Contract Address</p>
+					<pre>{{logicAddress}}</pre>
+					<p>ABI</p>
+					<pre>{{showABI}}</pre>
+				</div>
+				<li><h3><a href="/tech">Convention</a></h3></li>
+				<div id="contract-content" class="tech-content">
+					<h4>Accepted Prefixes</h4>
+					<p>The following prefixes will indicate what the timestamp contains with a special icon on the list and find page of the ÐApp. </p>
+					<p>For any timestamp you want rendered in HTML, the timestamp needs to have 'HTML:' prefixed to the beginning of the timestamp, for the ÐApp to properly parse it into HTML. Note, any user viewing the timestamp will need to manually toggle HTML on for that specific stamp, to view it as raw HTML. If you don't know what the timestamp does, do not toggle it, as it could be malicious and potentially drain your wallet balance. </p>
+					<p>For timestamps containing hashed data, prefix it with the type of hashing algorithm used, such as 'SHA-2:', 'SHA-3:', 'MD5:', or 'Keccak:'.</p>
+					<p>In the case of predictions, prefix it with 'PREDICT:' to in fact verify that it is a prediction you are doing and putting your account behind. </p>
+					<p>If you believe any further prefixes should be added, feel free to leave a suggestion and it will be considered. </p>
+
+				</div>
+				<li><h3><a href="/tech">Contracts</a></h3></li>
+				<div id="contract-content" class="tech-content">
+					<h4>Overview</h4>
+					<p>The contracts that run this decentralized application have been programmed within Solidity, using the browser-based Solidity compiler created by Christian Reitweissner. The ÐApp is comprised of three contracts. An immutable database contract, an updatable logic contract, and a resolver contract to connect the two other contracts. </p>
+					<p>The major reasoning behind keeping these contracts separate is to provide versionable and upgradeable logic, while at the same time keeping the trustlessnes and integrity of the timestamp database.</p>
+					<h4>The Resolver</h4>
+					<p>The simplest contract of the three. The resolver contract functions to allow for an updatable logic contract, by forwarding the address of the most up to date logic contract to the database contract, along with providing the logic contract with the database address. The only mutable variable here, is the address of the logic contract, which can only be updated by the creator of the ÐApp.</p>
+					<h4>The Database</h4>
+					<p>The contract that stores the timestamps on the blockchain. It can only be accessed by the logic contract.</p>
+					<p>When it receives input from the logic contract, it runs a sanity check on the received content to ensure a proper timestamp is being sent, and that no previous entries are being overwritten. Queries the resolver contract each time, to ensure it only accepts a timestamp from the currently valid logic contract.</p>
+					<h4>The Logic</h4>
+					<p>This is the contract that the user will be interacting with to create a timestamp.</p>
+					<p>The contract is currently interfaced with the provably-honest Oraclize service, to fetch NICT timestamps. It also contains a parent contract which allows for rounding uint types in Solidity. </p>
+					<p>The two functions that users will be interacting with are getTime and getBlockTimeOnly. The getTime function provides users with the chance to get a timestamp from the oracle service, but at an increased cost, due to a check done to the price of the oracle service and then actaully paying the oracle service fee, which is rounded up by this ÐApp with the goal of providing a more convenient price with only a couple of decimal places rather than several, and at the same time providing the owner of this contract a percentage of the fee.</p> 
+					<p>If no fee is provided, the oracle prices will still be updated, and you will also get the blockchain timestamp. This function, always attempts to refund the difference in oracle price and amount sent by the user calling the function. To give an example, if a proof stamp costs 2 ether, and a non-proof oracle stamp costs 1 ether, and the user sends 10 ether, the contract assumes the user is looking for the 'top-tier' stamp which includes the proof, hence it'll provide the 2 ether cost stamp to the user, and after the process is complete, the contract refunds 8 ether back to the user, as the cost was only 2 ether. If the user wanted just a non-proof oracle stamp, the user would need to send an amount greater than the hypothetical 1 ether price, but less than 2 ethers. Therefore, if the user sends 1.8 ether, the contract will provide a non-proof oracle stamp, and then refund the user 0.8 ether.</p>
+					<p>In regards to the oracled timestamp, it is fetched from a NICT page providing a timestamp in JSON format. The getTime function sends a request to the Oraclize contract running on Ethereum, to fetch the timestamp from the NICT page, and provides a TLS Notary proof if requested. At this point, the contract saves some variables it will need, once the Oraclize service makes a callback to the contract, containing the fetched data.</p>
+					<p> The callback functions are called by the Oraclize service, and are then forwarded to the Database contract. </p>
+					<p>The getBlockTimeOnly function is the alternative in the case an oracled timestamp is not required, and the blockchain timestamp suffices. This function carries no fee, and will not check the oracle prices, hence it is the lowest cost alternative, costing the user only the gas cost to run the contract on the network.</p>
+					<p> On the testnet, an additional function is available, getTimeCustom, which allows users to retrieve timestamps using user-set oracles. The function is experimental and requires more testing before it can be added to the live logic contract. </p>
+					<p> Most of the other functions on the contract are comprised of ones that allow the creator to maintain certain variables in the contract, such as decimal places rounding, the percentage to round up by, gas cost to cover in the oracle call, and updating the url from which the oracle fetches the timestamp. </p>
+				</div>
+				<li><h3><a href="/tech">Oracle</a></h3></li>
+				<div class="tech-content">
+					<h4>Oraclize</h4>
+					<p>The Oracle service this ÐApp uses is provided by <a target="_blank" href="http://www.oraclize.it/">Oraclize.it</a>. To verify the proofs you may use their own <a target="_blank" href="http://app.oraclize.it/service/monitor">monitor app</a> which fetches the most recent proofs from IPFS and then verifies them using TLSNotary. You can also manually verify the proofs by downloading the associated IPFS reference within the timestamp using your own IPFS gateway and then verify it with the <a target="_blank" href="https://tlsnotary.org/pagesigner.html">PageSigner</a> extension.</p>
+				</div>
+				<li><h3><a href="/tech">User Interface</a></h3></li>
+				<div class="tech-content">
+					<h4>Philosophy</h4>
+					<p>The goal of the site is for it to fit seamlessly with the Mist browser and contain a standardized ÐApp appearance which strives to be modern, responsive, and functional. To achieve this, a number of packages were used, but within the scope of this page, the focus will be on Ethereum-based packages.</p>
+					<h4>Framework and Modules used</h4>
+					<p> This web app is built using the <a target="_blank" href="https://www.meteor.com/">Meteor</a> framework, which the Ethereum wallet itself is based on.</p>
+					<p>The web template was created using a number of Meteor packages authored by the Ethereum team (mainly Fabian Vogelsteller and Alex Van De Sande); these packages are dapp-styles, and elements, which can be found at the <a target="_blank" href="https://atmospherejs.com/ethereum">Atmosphere</a> package explorer. The web app structure is based on the <a target="_blank" href="https://github.com/SilentCicero/meteor-dapp-boilerplate">meteor-dapp-boilerplate</a> authored by SilentCicero. </p>
+					<p>The integral package which the web app uses to interface with the Ethereum network and blockchain is the <a target="_blank" href="https://github.com/ethereum/web3.js">web3.js</a> package (mainly maintained by Marek Kotewicz and Fabian Vogelsteller).</p> 
+				</div>
+				<li><h3><a href="/tech">Storage</a></h3></li>
+				<div class="tech-content">
+					<h4>Immutable Storage</h4>
+					<p>This web page itself does not store any of the timestamps you see. It simply acts as a relay between the client and the Ethereum blockchain, where the timestamps and corresponding data are stored.</p>
+					<p>Being on the blockchain, helps ensure the utmost integrity of your timestamps, as no one could change your timestamp without attempting an attack on the Ethereum network as a whole. A vulnerability in the contract could break the immutability, however, safeguards have been put in place on the database contract, which checks that the timestamp entry it is writing to is empty, so it does not overwrite existing timestamps.</p>
+				</div>
+				<li><h3><a href="/tech">Contact</a></h3></li>
+				<div class="tech-content">
+					<h4>Contact Info</h4>
+					<p>If you have any further questions, concerns, suggestions, please send an e-mail to <a target="_top" href="mailto:admin@ethapp.io?Subject=DATA%20contact">admin@ethapp.io</a></p> 
+				</div>
+			</ul>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,213 @@
+/* #### All small screens #### */
+// @media screen and (min-width: 640px){
+//     .dapp-flex-content {
+//         .flex-direction(row);
+//         .flex(1);
+//     }
+
+//     main.dapp-content {
+//         .flex(1);
+//     }
+
+//     aside.dapp-main {
+//         .flex(0 0 200px);
+//     }
+// }
+
+/* #### All small tablets screens #### */
+@media screen and (max-width: 768px){
+    .dapp-actionbar {
+        flex: 1 100%;
+        nav ul {
+            display: flex;        
+            li {
+                flex: 1;
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: 1330px){
+    .dapp-modal-container {
+        font-size: 95%;
+        max-width: 74vw;
+    }
+    .dapp-modal-storage {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .dapp-modal-container {
+        font-size: 90%;
+        max-width: 85vw;
+    }
+    .dapp-modal {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* #### All small phone screens landscape #### */
+@media screen and (max-width: 810px){
+    aside.dapp-main {
+        .flex(0 0 @widthSidebarSmall);
+    }
+
+    .dapp-header {
+        padding: @defaultPaddingVertical @defaultPaddingHorizontal/2 0;
+
+        h1 {
+            right: 1em;
+        }
+
+        nav ul a {
+            padding: @defaultPaddingVertical/2 @defaultPaddingHorizontal/2;
+        }
+    }
+
+    #dappTitle {
+        margin-top: 7px;
+        img {
+            margin-top: 8px;
+        }
+    }
+    .dapp-modal-container {
+        font-size: 2.6vw;
+        max-width: 100vw;
+    }
+
+    .dapp-modal {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 636px){
+    aside.dapp-main {
+        .flex(0 0 @widthSidebarSmall);
+    }
+
+    .dapp-header {
+        padding: @defaultPaddingVertical/2 0 0;
+
+        h1 {
+            right: 0em;
+        }
+        nav ul a {
+            padding: @defaultPaddingVertical/5 @defaultPaddingHorizontal/3;
+        }
+    }
+
+    #dappTitle {
+        margin-top: 4px;
+        img {
+            margin-top: 5px;
+        }
+    }
+
+    table td {
+        padding: 0;
+    }
+
+    .tech-nav-menu {
+        ul {
+            width: 100%;
+            position: relative;
+        }
+    }
+
+    .tech-content {
+        margin: 0;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    #dappTitle {
+        display: none;
+    }
+    .dapp-header {
+        nav ul {
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+//triple column decreasing
+@media screen and (max-width: 1080px){
+    .dapp-account-list li h3 + span {
+        max-width: 26vw;
+    }
+}
+//double column
+@media screen and (max-width: 960px){
+    .dapp-account-list li h3 + span {
+        max-width: 40vw;
+    }
+}
+//single column
+@media screen and (max-width: 660px){
+    .dapp-account-list li h3 + span {
+        max-width: 80vw;
+    }
+}
+@media screen and (max-width: 520px){
+    .dapp-account-list li h3 + span {
+        max-width: 75vw;
+    }
+}
+
+
+@media screen and (max-width: 800px){
+    // aside.dapp-actions {
+    //     width: @widthToolbarSmall;
+    // }   
+}
+
+/* #### All small phone screens porttrait #### */
+@media screen and (max-width: 480px){
+    
+}
+
+
+/* #### Mobile Phones Portrait #### */
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+    body {
+        font-size: 14px;
+    }
+}
+
+/* #### Mobile Phones Landscape #### */
+@media screen and (max-device-width: 640px) and (orientation: landscape){
+    body {
+        font-size: 15px;
+    }
+}
+
+/* #### Mobile Phones Portrait or Landscape #### */
+@media screen and (max-device-width: 640px){
+    
+}
+
+/* #### iPhone 4+ Portrait or Landscape #### */
+@media screen and (max-device-width: 580px) and (-webkit-min-device-pixel-ratio: 2){
+
+}
+
+/* #### Tablets Portrait #### */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait){
+
+}
+
+
+/* #### Tablets Landscape #### */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape){
+
+}
+
+
+/* #### Desktops #### */
+@media screen and (min-width: 1024px){
+
+}

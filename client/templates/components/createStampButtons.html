@@ -1,0 +1,23 @@
+<template name="components_createStampButtons">
+	<div class="center">
+		<h1 class="stamp-title"> Oracle Stamp </h1>
+		{{#each listPrices}}
+		<button id="stamp{{priceTitle @index}}" class="stamp-button" value={{this}}>
+			<div class="stamp-create">
+				{{priceTitle @index}} : {{formatEther this}} {{#if loadingPrice}} Ether{{/if}}
+			</div>
+			<h3>Add {{priceTitle @index}} Stamp</h3>
+		</button>
+		{{/each}}
+	</div>
+	<hr>
+	<div class="center">
+		<h1 class="stamp-title"> Blockchain Stamp </h1>
+		<button id="stampBlock" class="stamp-button" value=0>
+			<div class="stamp-create">
+				Pay only Gas cost
+			</div>
+			<h3>Add Blocktime Stamp</h3>
+		</button>
+	</div>
+</template>

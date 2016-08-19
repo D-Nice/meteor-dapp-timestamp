@@ -1,0 +1,11 @@
+<template name="components_timestampList">
+    <h1 class="center">{{timestampDisplayLength}} <span>Timestamps</span> Recorded</h1>
+    <hr>
+    <div class="row clear">
+        <ul class="dapp-account-list no-select">
+            {{#each timestampList timestampLength}}
+                {{> components_timestampTabs}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
